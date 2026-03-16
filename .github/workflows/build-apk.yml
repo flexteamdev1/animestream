@@ -22,14 +22,17 @@ jobs:
         with:
           channel: stable
 
+      - name: Verify Flutter Installation
+        run: flutter --version
+
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build Debug APK
+        run: flutter build apk --debug
 
-      - name: Upload APK
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
